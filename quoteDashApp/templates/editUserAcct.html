@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User Account</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 5px;
+        }
+
+        body {
+            background-color: lightgray;
+        }
+
+        #container {
+            /* background-color: darkcyan; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex flex-row justify-content-around">
+        <div class="col-5">
+            <h2>Edit my Account</h2>
+            {% if messages %}
+            <ul class="messages text-danger">
+                     {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/updateUser/{{loggedinuser.id}}" method="post">
+                {% csrf_token %}
+                <p>First Name: <input type="text" name="fname"></p>
+                <p>Last Name: <input type="text" name="lname"></p>
+                <p>Email: <input type="text" name="email"></p>
+                <div>
+                    <button type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <a href="/home">Back</a> |
+            <a href="/logout"><button type="submit">Logout</button></a>
+        </div>
+
+</body>
+
+</html>

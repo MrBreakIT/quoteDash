@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users posted Quotes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 20px;
+        }
+
+        p{
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        body {
+            background-color: lightgray;
+        }
+
+        #container {
+            /* background-color: darkcyan; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="d-flex flex-row justify-content-between">
+        <div class="col-5">
+            <h4>{{specificuser.firstName}} {{specificuser.lastName}} Quotes: </h4>
+            {% for quote in specificuser.quote.all %}
+            <ul>
+                
+                <p>{{quote.author}}: {{quote.content}}</p>
+                
+            </ul>
+            {% endfor %}
+            
+        </div>
+        <div>
+            <a href="/home">Back</a> |
+            <a href="/logout"><button type="submit">Logout</button></a>
+        </div>
+    </div>
+</body>
+
+</html>

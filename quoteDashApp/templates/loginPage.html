@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style>
+            *{
+                margin: 5px;
+            }
+            body {
+                background-color: lightslategray;
+            }
+    
+            #container {
+                /* background-color: darkcyan; */
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+    
+            table {
+                font-family: Arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+    
+            td,
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+    
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+
+</head>
+
+<body>
+    <div class="d-flex flex-row justify-content-between">
+        <div class="col-5">
+            <h2>Welcome!</h2>
+            <h4>Register Below</h4>
+            {% if messages %}
+            <ul class="messages text-danger">
+                     {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/registerUser" method="post">
+                {% csrf_token %}
+                <p>First Name: <input type="text" name="fname"></p>
+                <p>Last Name: <input type="text" name="lname"></p>
+                <p>Email: <input type="text" name="email"></p>
+                <p>Password: <input type="password" name="password"></p>
+                <p>**Password should be at least 5 characters**</p>
+                <p>Confirm PW: <input type="password" name="confirmPW"></p>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div class="col-5">
+            <h2>Please Log in.</h2>            
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <p>Email: <input type="text" name="email"></p>
+                <p>Password: <input type="password" name="password"></p>
+                <p><button type="submit">Log In!</button></p>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>
